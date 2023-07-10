@@ -34,7 +34,7 @@ def get_sales_data():
 
 def validate_data(values):
     """
-    Inside ethe try, converts all string values into integers.
+    Inside the try, converts all string values into integers.
     Raises ValueError if strings cannot be converted into int,
     or if there aren't exactly 6 values.
     """
@@ -49,5 +49,16 @@ def validate_data(values):
         return False
     return True
 
+def update_sales_worksheet(data):
+    """
+    Update sales worksheet, add new row with the list data provided.
+    """
+    print("Updating sales worksheet...\n")
+    sales_worksheet = SHEET.worksheet('sales')
+    sales_worksheet.append_row(data)
+    print("Sales worksheet updated successfully.\n")
+
 
 data = get_sales_data()
+sales_data = [int(num) for num in data]
+update_sales_worksheet(sales_data)
